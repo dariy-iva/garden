@@ -8,13 +8,6 @@ const applesOnTreesElement = document.querySelector('#applesOnTrees')
 const applesSpoiledElement = document.querySelector('#applesSpoiled')
 const buttonElement = document.querySelector('#passDay')
 
-function refreshLayout(configs) {
-  const { treesTotal, applesTotal, applesOnTrees, applesSpoiled } = configs
-  treesTotalElement.textContent = treesTotal
-  applesTotalElement.textContent = applesTotal
-  applesOnTreesElement.textContent = applesOnTrees
-  applesSpoiledElement.textContent = applesSpoiled
-}
 const createApple = () => new GardenApple()
 
 function createTree() {
@@ -25,7 +18,7 @@ function createTree() {
 
 const garden = new GardenWithChildren(createTree)
 
-function getApples() {
+function getInfoAboutGarden() {
   let treesTotal = 0
   let applesTotal = 0
   let applesOnTrees = 0
@@ -58,11 +51,19 @@ function passDay() {
   })
 }
 
+function refreshLayout(configs) {
+  const { treesTotal, applesTotal, applesOnTrees, applesSpoiled } = configs
+  treesTotalElement.textContent = treesTotal
+  applesTotalElement.textContent = applesTotal
+  applesOnTreesElement.textContent = applesOnTrees
+  applesSpoiledElement.textContent = applesSpoiled
+}
+
 function handleButtonClick() {
   passDay()
-  refreshLayout(getApples())
+  refreshLayout(getInfoAboutGarden())
 }
 
 garden.createChildren()
-refreshLayout(getApples())
+refreshLayout(getInfoAboutGarden())
 buttonElement.addEventListener('click', handleButtonClick)
